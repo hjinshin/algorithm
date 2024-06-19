@@ -1,37 +1,29 @@
-package ch4.mergesort;
+package ch4.merge_sort;
 
 import java.io.*;
+import java.util.*;
 
-public class BOJ_2751_수정렬하기2 {
+public class BOJ_1517_버블소트 {
     public static int[] A, temp;
+    public static long result;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
         int N = Integer.parseInt(br.readLine());
         A = new int[N];
         temp = new int[N];
+        StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            A[i] = Integer.parseInt(br.readLine());
+            A[i] = Integer.parseInt(st.nextToken());
         }
-
-        merge_sort(0, N-1);
-
-        for (int i : A) {
-            bw.write(i + "\n");
-        }
-        bw.flush();
-        bw.close();
+        merge_sort(0, N - 1);
+        System.out.println(result);
     }
 
     public static void merge_sort(int s, int e) {
-        if(e - s < 1)   return;
-
+        if(e - s < 1) return;
         int m = s + (e - s) / 2;
-
         merge_sort(s, m);
-        merge_sort(m+1, e);
-
+        merge_sort(m + 1, e);
         for (int i = s; i <= e; i++) {
             temp[i] = A[i];
         }
@@ -42,6 +34,7 @@ public class BOJ_2751_수정렬하기2 {
         while (idx1 <= m && idx2 <= e) {
             if (temp[idx1] > temp[idx2]) {
                 A[k] = temp[idx2];
+                result += idx2 - k;
                 idx2++;
             } else {
                 A[k] = temp[idx1];
@@ -49,6 +42,7 @@ public class BOJ_2751_수정렬하기2 {
             }
             k++;
         }
+
         while (idx1 <= m) {
             A[k] = temp[idx1];
             idx1++;

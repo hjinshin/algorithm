@@ -1,4 +1,4 @@
-package ch4.bubblesort;
+package ch4.bubble_sort;
 
 import java.io.*;
 import java.util.*;

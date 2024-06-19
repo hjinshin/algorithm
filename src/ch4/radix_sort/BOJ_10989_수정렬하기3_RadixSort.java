@@ -1,4 +1,4 @@
-package ch4.radixsort;
+package ch4.radix_sort;
 
 import java.io.*;
 

@@ -1,4 +1,4 @@
-package ch4.selectionsort;
+package ch4.selection_sort;
 
 import java.io.*;
 

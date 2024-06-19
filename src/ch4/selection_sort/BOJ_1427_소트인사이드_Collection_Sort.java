@@ -1,23 +1,23 @@
-package ch4.selectionsort;
+package ch4.selection_sort;
 
 import java.io.*;
 import java.util.*;
 
-public class BOJ_1427_소트인사이드_PriorityQueue {
+public class BOJ_1427_소트인사이드_Collection_Sort {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String str = br.readLine();
         char[] strChar = str.toCharArray();
-
-        PriorityQueue<Integer> pQueue = new PriorityQueue<>(Collections.reverseOrder());
-
+        List<Integer> list = new ArrayList<>();
         for (char c : strChar) {
-            pQueue.add(c - '0');
+            list.add(c - '0');
         }
 
-        while (!pQueue.isEmpty()) {
-            System.out.print(pQueue.poll());
+        list.sort(Collections.reverseOrder());
+
+        for (Integer i : list) {
+            System.out.print(i);
         }
     }
 }
