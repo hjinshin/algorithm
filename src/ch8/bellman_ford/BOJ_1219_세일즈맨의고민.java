@@ -11,6 +11,7 @@ public class BOJ_1219_세일즈맨의고민 {
     static long[] dist;
     static int[] earn;
     static List<Edge> edges = new ArrayList<>();
+    static List<Integer>[] graph;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,12 +22,17 @@ public class BOJ_1219_세일즈맨의고민 {
         M = Integer.parseInt(st.nextToken());
         dist = new long[N];
         earn = new int[N];
+        graph = new List[N];
+        for(int i = 0; i < N; i++) {
+            graph[i] = new ArrayList<>();
+        }
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int u = Integer.parseInt(st.nextToken());
             int v = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
             edges.add(new Edge(u, v, w));
+            graph[u].add(v);
         }
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
@@ -37,7 +43,7 @@ public class BOJ_1219_세일즈맨의고민 {
 
         if (dist[end] == Long.MIN_VALUE) {
             System.out.println("gg");
-        } else if(dist[end] == Long.MAX_VALUE) {
+        }else if (checkCycle()) {
             System.out.println("Gee");
         } else {
             System.out.println(dist[end]);
@@ -49,7 +55,7 @@ public class BOJ_1219_세일즈맨의고민 {
             dist[i] = Long.MIN_VALUE;
         }
         dist[start] = earn[start];
-        for (int i = 0; i < N * 2; i++) {
+        for (int i = 0; i < N - 1; i++) {
             for (Edge edge : edges) {
                 int u = edge.u, v = edge.v, w = edge.w;
                 if(dist[u] == Long.MIN_VALUE) continue;
@@ -57,10 +63,42 @@ public class BOJ_1219_세일즈맨의고민 {
                     dist[v] = Long.MAX_VALUE;
                 } else if (dist[v] < dist[u] + earn[v] - w) {
                     dist[v] = dist[u] + earn[v] - w;
-                    if (i > N - 1)  dist[v] = Long.MAX_VALUE;
                 }
             }
         }
+    }
+
+    static boolean checkCycle() {
+        for(Edge e : edges) {
+            int u = e.u, v = e.v, w = e.w;
+            if(dist[u] == Long.MIN_VALUE) continue;
+            if (dist[u] == Long.MAX_VALUE) {
+                dist[v] = Long.MAX_VALUE;
+            } else if (dist[u] != Long.MIN_VALUE && dist[v] < dist[u] + earn[v] - w) {
+                if (bfs(v, end)) return true;
+            }
+        }
+        return false;
+    }
+
+    static boolean bfs(int st, int end) {
+        if(st == end) return true;
+
+        Queue<Integer> q = new LinkedList<>();
+        boolean[] visited = new boolean[N];
+        q.add(st);
+        visited[st] = true;
+        while(!q.isEmpty()) {
+            int u = q.poll();
+            for (Integer v : graph[u]) {
+                if(!visited[v]) {
+                    if(v == end) return true;
+                    visited[v] = true;
+                    q.add(v);
+                }
+            }
+        }
+        return false;
     }
 
     static class Edge {
