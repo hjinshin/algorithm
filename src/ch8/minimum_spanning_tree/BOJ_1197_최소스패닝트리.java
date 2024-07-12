@@ -40,8 +40,10 @@ public class BOJ_1197_최소스패닝트리 {
     public static void mst() {
         while (!pq.isEmpty()) {
             Edge e = pq.poll();
-            if(union(e.u, e.v))
+            if(find(e.u) != find(e.v)) {
+                union(e.u, e.v);
                 result += e.w;
+            }
         }
     }
 
@@ -50,13 +52,11 @@ public class BOJ_1197_최소스패닝트리 {
         return parent[x] = find(parent[x]);
     }
 
-    public static boolean union(int x, int y) {
+    public static void union(int x, int y) {
         int rootX = find(x);
         int rootY = find(y);
-        if(rootX == rootY)
-            return false;
-        parent[rootX] = rootY;
-        return true;
+        if(rootX != rootY)
+            parent[rootX] = rootY;
     }
 
     static class Edge {
