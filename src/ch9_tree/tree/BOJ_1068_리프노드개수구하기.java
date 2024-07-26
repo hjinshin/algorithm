@@ -1,4 +1,4 @@
-package ch9_tree;
+package ch9_tree.tree;
 
 import java.io.BufferedReader;
 import java.io.IOException;
