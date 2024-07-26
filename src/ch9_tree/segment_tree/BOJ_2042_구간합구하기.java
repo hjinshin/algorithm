@@ -1,8 +1,6 @@
 package ch9_tree.segment_tree;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -10,17 +8,16 @@ import java.util.StringTokenizer;
 public class BOJ_2042_구간합구하기 {
     static int N, M, K;
     static long[] arr;
-    static List<Long> result;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
         arr = new long[2 * N];
-        result = new ArrayList<>();
 
         for (int i = N; i < 2 * N; i++) {
             arr[i] = Long.parseLong(br.readLine());
@@ -35,13 +32,11 @@ public class BOJ_2042_구간합구하기 {
             if (a == 1) {
                 updateTree((int)(b + N - 1), c);
             } else {
-                result.add(sumTree((int)(b + N - 1), (int)(c + N - 1)));
+                bw.write(sumTree((int)(b + N - 1), (int)(c + N - 1)) + "\n");
             }
         }
-
-        for (Long l : result) {
-            System.out.println(l);
-        }
+        bw.flush();
+        bw.close();
     }
 
     static void setTree(int i) {
