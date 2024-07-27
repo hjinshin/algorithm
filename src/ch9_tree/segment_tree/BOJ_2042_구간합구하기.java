@@ -1,8 +1,6 @@
 package ch9_tree.segment_tree;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class BOJ_2042_구간합구하기 {
