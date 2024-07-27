@@ -15,9 +15,12 @@ public class BOJ_2042_구간합구하기 {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-        arr = new long[2 * N];
+        int height = getHeight(N);
+        int arrSize = (int) Math.pow(2, height + 1);
+        int startIndex = arrSize / 2;
+        arr = new long[arrSize + 1];
 
-        for (int i = N; i < 2 * N; i++) {
+        for (int i = startIndex; i < startIndex + N; i++) {
             arr[i] = Long.parseLong(br.readLine());
         }
         setTree(arr.length - 1);
@@ -28,13 +31,22 @@ public class BOJ_2042_구간합구하기 {
             long c = Long.parseLong(st.nextToken());
 
             if (a == 1) {
-                updateTree((int)(b + N - 1), c);
+                updateTree((int)(b + startIndex - 1), c);
             } else {
-                bw.write(sumTree((int)(b + N - 1), (int)(c + N - 1)) + "\n");
+                bw.write(sumTree((int)(b + startIndex - 1), (int)(c + startIndex - 1)) + "\n");
             }
         }
         bw.flush();
         bw.close();
+    }
+
+    static int getHeight(int length) {
+        int height = 0;
+        while (length != 0) {
+            length /= 2;
+            height++;
+        }
+        return height;
     }
 
     static void setTree(int i) {
