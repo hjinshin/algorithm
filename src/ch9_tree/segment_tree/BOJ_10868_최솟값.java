@@ -13,11 +13,14 @@ public class BOJ_10868_최솟값 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        arr = new int[N * 2];
-        for(int i=0; i<N; i++) {
+        int height = getHeight(N);
+        int arrSize = (int) Math.pow(2, height + 1);
+        int startIndex = arrSize / 2;
+        arr = new int[arrSize];
+        for (int i = 0; i < arr.length; i++) {
             arr[i] = Integer.MAX_VALUE;
         }
-        for(int i=N; i < 2 * N; i++) {
+        for(int i=startIndex; i < startIndex + N; i++) {
             arr[i] = Integer.parseInt(br.readLine());
         }
         setTree(arr.length - 1);
@@ -25,10 +28,19 @@ public class BOJ_10868_최솟값 {
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            bw.write(findMin(a + N - 1, b + N - 1) + "\n");
+            bw.write(findMin(a + startIndex - 1, b + startIndex - 1) + "\n");
         }
         bw.flush();
         bw.close();
+    }
+
+    static int getHeight(int length) {
+        int height = 0;
+        while (length != 0) {
+            length /= 2;
+            height++;
+        }
+        return height;
     }
 
     static void setTree(int i) {
