@@ -18,7 +18,7 @@ public class BOJ_2042_구간합구하기 {
         int height = getHeight(N);
         int arrSize = (int) Math.pow(2, height + 1);
         int startIndex = arrSize / 2;
-        arr = new long[arrSize + 1];
+        arr = new long[arrSize];
 
         for (int i = startIndex; i < startIndex + N; i++) {
             arr[i] = Long.parseLong(br.readLine());
