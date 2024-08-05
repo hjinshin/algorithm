@@ -43,20 +43,20 @@ public class BOJ_11437_LCA {
     }
 
     static void bfs(int start) {
-        Queue<Edge> queue = new LinkedList<>();
+        Queue<Integer> queue = new LinkedList<>();
         boolean[] visited = new boolean[N + 1];
         visited[start] = true;
-        queue.add(new Edge(start, 0));
+        queue.add(start);
+        depth[start] = 0;
 
         while (!queue.isEmpty()) {
-            Edge cur = queue.poll();
-            depth[cur.u] = cur.w;
-            int w = cur.w + 1;
-            for (Integer i : tree[cur.u]) {
+            int cur = queue.poll();
+            for (Integer i : tree[cur]) {
                 if (!visited[i]) {
                     visited[i] = true;
-                    parent[i] = cur.u;
-                    queue.add(new Edge(i, w));
+                    parent[i] = cur;
+                    queue.add(i);
+                    depth[i] = depth[cur] + 1;
                 }
             }
         }
@@ -71,14 +71,5 @@ public class BOJ_11437_LCA {
             }
         }
         return a;
-    }
-
-    static class Edge {
-        int u, w;
-
-        Edge(int u, int w) {
-            this.u = u;
-            this.w = w;
-        }
     }
 }
