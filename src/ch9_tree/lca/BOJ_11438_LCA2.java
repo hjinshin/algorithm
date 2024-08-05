@@ -74,10 +74,8 @@ public class BOJ_11438_LCA2 {
             b = temp;
         }
         for (int i = height; i >= 0; i--) {
-            if (Math.log(depth[b] - depth[a]) / Math.log(2) >= i) {
-                if (depth[a] <= depth[parent[i][b]]) {
-                    b = parent[i][b];
-                }
+            if (depth[b] - depth[a] >= Math.pow(2, i)) {
+                b = parent[i][b];
             }
         }
         for(int i=height; i >= 0; i--) {
