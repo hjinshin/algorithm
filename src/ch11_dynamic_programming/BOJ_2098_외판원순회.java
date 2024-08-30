@@ -38,7 +38,7 @@ public class BOJ_2098_외판원순회 {
             return D[now][visit];
         }
         D[now][visit] = INF;
-        for (int i = 0; i < N; i++) {
+        for (int i = 1; i < N; i++) {
             if ((visit & (1 << i)) == 0 && W[now][i] != 0) {
                 // 방문한 적 없고, 갈 수 있는 도시일 때
                 D[now][visit] = Math.min(D[now][visit], tsp(i, (visit | (1 << i))) + W[now][i]);
