@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class BOJ_1219_세일즈맨의고민 {
+public class BOJ_1219_세일즈맨의고민_BFS {
     static int N, M;
     static int start, end;
     static long[] dist;
