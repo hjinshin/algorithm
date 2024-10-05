@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class BOJ_1219_세일즈맨의고민 {
+public class BOJ_1219_세일즈맨의고민_BFS {
     static int N, M;
     static int start, end;
     static long[] dist;
@@ -74,7 +74,7 @@ public class BOJ_1219_세일즈맨의고민 {
             if(dist[u] == Long.MIN_VALUE) continue;
             if (dist[u] == Long.MAX_VALUE) {
                 dist[v] = Long.MAX_VALUE;
-            } else if (dist[u] != Long.MIN_VALUE && dist[v] < dist[u] + earn[v] - w) {
+            } else if (dist[v] < dist[u] + earn[v] - w) {
                 if (bfs(v, end)) return true;
             }
         }
