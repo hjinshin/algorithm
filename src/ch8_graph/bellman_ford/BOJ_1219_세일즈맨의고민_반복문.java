@@ -69,7 +69,7 @@ public class BOJ_1219_세일즈맨의고민_반복문 {
     }
 
     static void checkCycle() {
-        int cnt = N * (N - 1) / 2 + 1;
+        int cnt = N * (N - 1) / 2;
 
         for (int i = 0; i < cnt; i++) {
             for (Edge edge : edges) {
