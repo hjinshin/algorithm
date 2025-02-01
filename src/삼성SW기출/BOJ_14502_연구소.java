@@ -1,4 +1,4 @@
-package etc;
+package 삼성SW기출;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,9 +1,8 @@
-package etc;
+package 삼성SW기출;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_14888_연산자끼워넣기 {
