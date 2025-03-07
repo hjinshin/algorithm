@@ -1,7 +1,7 @@
 package programmers;
 import java.util.*;
 
-public class k진수에서_소수_개수_구하기 {
+public class programmers_k진수에서_소수_개수_구하기 {
     public int solution(int n, int k) {
         String converted = convert(n, k);
         String[] list = converted.split("0");
