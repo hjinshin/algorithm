@@ -2,7 +2,7 @@ package programmers;
 
 import java.util.*;
 
-class programmers_신고_결과_받기 {
+public class programmers_신고_결과_받기 {
     Map<String, Integer> idMap = new HashMap<>();
     boolean[][] reportId;
     int[] count;
