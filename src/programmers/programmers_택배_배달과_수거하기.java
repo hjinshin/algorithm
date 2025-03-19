@@ -2,7 +2,7 @@ package programmers;
 
 import java.util.*;
 
-class programmers_택배_배달과_수거하기 {
+public class programmers_택배_배달과_수거하기 {
     Stack<House> dStack = new Stack<>();
     Stack<House> pStack = new Stack<>();
     long result;
