@@ -2,7 +2,7 @@ package programmers;
 
 import java.util.*;
 
-class programmers_도넛과_막대_그래프 {
+public class programmers_도넛과_막대_그래프 {
     List<Integer>[] nextList;
     int[] before;
     int length;
